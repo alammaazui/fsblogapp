@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import {useNavigate} from 'react-router'
+// import { userContext } from "./UserContext";
+import useCurrentUser from "../hooks/useCurrentUser";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const Login = () => {
@@ -7,12 +9,12 @@ const Login = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
+  const {setCurrentUser}= useCurrentUser()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     (async () => {
-      try {54NH56NB 89[P'JH.20T
-        FileSystemHandle0
-    30]
+      try {
         const response = await fetch(`${baseURL}/api/v1/user/login`, {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -25,9 +27,9 @@ const Login = () => {
         }
 
         const {data} = await response.json()
-
+        // {role : 'admin' , token : '' , email :""}
         localStorage.setItem("authToken",data.token)
-    
+        setCurrentUser({ authToken: data.token, role:data.role, status:true });
 
       } catch (err) {
         console.log("error", err);

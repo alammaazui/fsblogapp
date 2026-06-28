@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {useNavigate} from 'react-router'
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-const Register = () => {
+const Register = ({ title  }) => {
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const Register = () => {
           <div className="col-md-5">
             <div className="card p-5">
               <div className="card-header bg-dark text-white">
-                <h1>Register</h1>
+                <h1>{title ? title : Register}</h1>
               </div>
               <div className="card-body">
                 <form
